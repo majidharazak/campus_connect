@@ -319,11 +319,10 @@ footer {
 
 <script>
 
-// Join club or event
 function join(item) {
-    alert("Thank you! You selected: " + item);
+    window.location.href =
+    "registration.html?fest=" + encodeURIComponent(item);
 }
-
 // Contact form demo
 document.getElementById("contactForm")
 .addEventListener("submit", function(event) {
