@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fest Registration | Campus Connect</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    color: #333;
+}
+
+header {
+    background: #263c85;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    background: linear-gradient(120deg, #263c85, #617de0);
+    color: white;
+    text-align: center;
+    padding: 45px 15px;
+}
+
+.hero h1 {
+    margin-bottom: 12px;
+    font-size: 32px;
+}
+
+section {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+h2 {
+    color: #263c85;
+    margin-bottom: 18px;
+}
+
+.program {
+    background: #edf0ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 12px 0;
+    line-height: 1.7;
+}
+
+.rules {
+    line-height: 2;
+    padding-left: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background: #263c85;
+    color: white;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 7px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #405ab5;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0009;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.popup-box {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 350px;
+    width: 100%;
+}
+
+.popup-box h2 {
+    color: green;
+}
+
+.popup-box p {
+    line-height: 1.7;
+}
+
+footer {
+    background: #263c85;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2 style="color:white;">🎓 Campus Connect</h2>
+    <a href="index.html">← Back to Home</a>
+</header>
+
+<div class="hero">
+    <h1 id="festName">College Fest</h1>
+    <p>Register now and showcase your talent!</p>
+</div>
+
+<section>
+
+    <!-- PROGRAM DETAILS -->
+    <div class="card">
+        <h2>🎉 Available Programs</h2>
+        <div id="programList"></div>
+    </div>
+
+    <!-- EVENT DETAILS -->
+    <div class="card">
+        <h2>📅 Event Details</h2>
+        <p><b>Date:</b> 20 December 2026</p>
+        <p><b>Time:</b> 9:00 AM – 5:00 PM</p>
+        <p><b>Venue:</b> College Auditorium</p>
+    </div>
+
+    <!-- RULES -->
+    <div class="card">
+        <h2>📌 Participation Rules</h2>
+        <ul class="rules">
+            <li>Only registered students can participate.</li>
+            <li>Submit your registration before the deadline.</li>
+            <li>Participants must report before the scheduled time.</li>
+            <li>Follow the instructions of the event coordinators.</li>
+            <li>Maintain discipline throughout the event.</li>
+        </ul>
+    </div>
+
+    <!-- REGISTRATION FORM -->
+    <div class="card">
+        <h2>📝 Registration Form</h2>
+
+        <form id="registrationForm">
+
+            <label>Student Name</label>
+            <input type="text" id="studentName"
+            placeholder="Enter your full name" required>
+
+            <label>Department</label>
+            <select id="department" required>
+                <option value="">Select Department</option>
+                <option>Computer Science</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Electrical Engineering</option>
+                <option>Electronics</option>
+                <option>Other</option>
+            </select>
+
+            <label>Year of Study</label>
+            <select id="year" required>
+                <option value="">Select Year</option>
+                <option>First Year</option>
+                <option>Second Year</option>
+                <option>Third Year</option>
+                <option>Fourth Year</option>
+            </select>
+
+            <label>Participating Program</label>
+            <select id="program" required>
+                <option value="">Select a Program</option>
+            </select>
+
+            <button type="submit">Submit Registration</button>
+
+        </form>
+    </div>
+
+</section>
+
+<!-- SUCCESS POPUP -->
+<div id="popup">
+    <div class="popup-box">
+        <h2>✓ Registered Successfully!</h2>
+        <p id="successMessage">
+            Your registration is successful.
+        </p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+<footer>
+    © 2026 Campus Connect | All Rights Reserved
+</footer>
+
+<script>
+
+// Get fest name from previous page
+const params = new URLSearchParams(window.location.search);
+const fest = params.get("fest") || "College Fest";
+
+document.getElementById("festName").innerText = fest;
+
+// Sample programs for different fests
+const festPrograms = {
+    "College Fest": [
+        ["Solo Dance", "10:00 AM", "Main Stage"],
+        ["Group Dance", "11:00 AM", "Main Stage"],
+        ["Singing", "12:00 PM", "Auditorium"],
+        ["Mime", "1:30 PM", "Auditorium"],
+        ["Drama", "2:30 PM", "Auditorium"],
+        ["Fashion Show", "3:30 PM", "Main Stage"]
+    ],
+
+    "Tech Fest": [
+        ["Coding Competition", "10:00 AM", "Computer Lab"],
+        ["Quiz Competition", "11:00 AM", "Seminar Hall"],
+        ["Project Exhibition", "12:00 PM", "Exhibition Hall"],
+        ["Web Design", "2:00 PM", "Computer Lab"]
+    ],
+
+    "Arts Day": [
+        ["Painting", "10:00 AM", "Art Room"],
+        ["Pencil Drawing", "11:00 AM", "Art Room"],
+        ["Poetry", "12:00 PM", "Auditorium"],
+        ["Story Writing", "1:30 PM", "Seminar Hall"]
+    ]
+};
+
+// Select programs
+const programs = festPrograms[fest] ||
+    ["General Participation", "Cultural Performance", "Other"]
+    .map(item => [item, "To be announced", "To be announced"]);
+
+// Display programs and add dropdown options
+const list = document.getElementById("programList");
+const dropdown = document.getElementById("program");
+
+programs.forEach(item => {
+
+    const div = document.createElement("div");
+    div.className = "program";
+
+    const title = document.createElement("b");
+    title.textContent = item[0];
+
+    const time = document.createElement("p");
+    time.textContent = "Time: " + item[1];
+
+    const venue = document.createElement("p");
+    venue.textContent = "Venue: " + item[2];
+
+    div.append(title, time, venue);
+    list.appendChild(div);
+
+    const option = document.createElement("option");
+    option.value = item[0];
+    option.textContent = item[0];
+    dropdown.appendChild(option);
+
+});
+
+// Submit registration
+document.getElementById("registrationForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("studentName").value;
+
+    const department =
+        document.getElementById("department").value;
+
+    const year =
+        document.getElementById("year").value;
+
+    const program =
+        document.getElementById("program").value;
+
+    document.getElementById("successMessage").innerText =
+        "Thank you, " + name +
+        "! You have registered for " + program +
+        " in " + fest + ".";
+
+    document.getElementById("popup").style.display = "flex";
+
+    this.reset();
+
+});
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
