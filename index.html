@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Connect</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    color: #222;
+}
+
+header {
+    background: #263c85;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+nav a:hover {
+    color: #ffd166;
+}
+
+.hero {
+    background: linear-gradient(120deg, #263c85, #617de0);
+    color: white;
+    text-align: center;
+    padding: 75px 20px;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #ffd166;
+    color: #222;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+section {
+    padding: 45px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #263c85;
+    font-size: 28px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000012;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #263c85;
+    margin-bottom: 12px;
+}
+
+.card p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.card button {
+    margin-top: 15px;
+}
+
+.announcement {
+    background: #e9edff;
+    padding: 18px;
+    margin: 12px 0;
+    border-left: 5px solid #263c85;
+    border-radius: 5px;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+footer {
+    background: #263c85;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+#message {
+    margin-top: 12px;
+    color: green;
+    text-align: center;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>🎓 Campus Connect</h1>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#clubs">Clubs</a>
+        <a href="#notice">Notices</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<div class="hero" id="home">
+    <h2>Welcome to Campus Connect!</h2>
+    <p>Connect. Communicate. Collaborate.</p>
+    <p>Your college community, all in one place.</p>
+    <a href="#clubs" class="btn">Explore Campus</a>
+</div>
+
+<!-- ABOUT -->
+<section>
+    <h2 class="section-title">About Campus Connect</h2>
+
+    <div class="card">
+        <p>
+        Campus Connect is a student-friendly platform
+        designed to bring college students together.
+        Students can discover events, join clubs,
+        share information and stay updated with
+        important campus announcements.
+        </p>
+    </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+    <h2 class="section-title">Upcoming Events</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🎉 College Fest</h3>
+            <p>Enjoy cultural programs, music and fun activities.</p>
+            <button class="btn" onclick="join('College Fest')">
+                Participate
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>💻 Tech Fest</h3>
+            <p>Explore technology, coding and innovation.</p>
+            <button class="btn" onclick="join('Tech Fest')">
+                Participate
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>🎨 Arts Day</h3>
+            <p>Show your creativity and artistic talents.</p>
+            <button class="btn" onclick="join('Arts Day')">
+                Participate
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- CLUBS -->
+<section id="clubs">
+    <h2 class="section-title">Student Clubs</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>⚙️ Engineering Club</h3>
+            <p>Learn, innovate and develop new ideas.</p>
+            <button class="btn" onclick="join('Engineering Club')">
+                Join Club
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>🎵 Music Club</h3>
+            <p>Explore music and showcase your talent.</p>
+            <button class="btn" onclick="join('Music Club')">
+                Join Club
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>💃 Dance Club</h3>
+            <p>Express yourself through dance.</p>
+            <button class="btn" onclick="join('Dance Club')">
+                Join Club
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- NOTICE BOARD -->
+<section id="notice">
+    <h2 class="section-title">Campus Notice Board</h2>
+
+    <div class="announcement">
+        📢 Registration is open for college fest!
+    </div>
+
+    <div class="announcement">
+        📢 Engineering Club meeting on Friday.
+    </div>
+
+    <div class="announcement">
+        📢 Students are invited to participate in Arts Day.
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+
+    <form id="contactForm">
+        <h3>Send us a Message</h3>
+
+        <input type="text" id="name"
+        placeholder="Your Name" required>
+
+        <input type="email" id="email"
+        placeholder="Your Email" required>
+
+        <textarea id="msg"
+        placeholder="Write your message..."
+        rows="5" required></textarea>
+
+        <button type="submit" class="btn">
+            Send Message
+        </button>
+
+        <p id="message"></p>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Campus Connect | All Rights Reserved</p>
+    <p>Made for Students ❤️</p>
+</footer>
+
+<script>
+
+// Join club or event
+function join(item) {
+    alert("Thank you! You selected: " + item);
+}
+
+// Contact form demo
+document.getElementById("contactForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+
+    document.getElementById("message").innerText =
+        "Thank you " + name + "! Your message is ready.";
+
+    this.reset();
+});
+
+</script>
+
+</body>
+</html>
